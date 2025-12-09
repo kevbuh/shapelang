@@ -42,69 +42,8 @@ Batch = NewType('Batch', int)
 y: Array[Batch, Height, Width] = Array()
 z: Array[Time, Batch, Height, Width] = Array()
 ```
-
+<!-- 
 # MISC
-
-#### PyTorch Shape Tracer
-
-Allows you to see the input output dimensions for each layer. Defined in ```ShapeTracer.py```.
-
-```python
-import torch
-import torch.nn as nn
-from ShapeTracer import ShapeTracer
-
-class TinyCNN(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.stem = nn.Sequential(
-            nn.Conv2d(3, 16, 3, padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(2),
-        )
-        self.block = nn.Sequential(
-            nn.Conv2d(16, 32, 3, padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(2),
-        )
-        self.head = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(32 * 56 * 56, 10),
-        )
-
-    def forward(self, x):
-        x = self.stem(x)
-        x = self.block(x)
-        x = self.head(x)
-        return x
-
-model = TinyCNN()
-x = torch.randn(4, 3, 224, 224)
-
-tracer = ShapeTracer(model)
-with tracer:
-    y = model(x)
-```
-
-with output of 
-
-```
-stem.0 [Conv2d]
-    in : [4, 3, 224, 224]
-    out: [4, 16, 224, 224]
-stem.2 [MaxPool2d]
-    in : [4, 16, 224, 224]
-    out: [4, 16, 112, 112]
-block.0 [Conv2d]
-    in : [4, 16, 112, 112]
-    out: [4, 32, 112, 112]
-block.2 [MaxPool2d]
-    in : [4, 32, 112, 112]
-    out: [4, 32, 56, 56]
-head.1 [Linear]
-    in : [4, 100352]
-    out: [4, 10]
-```
 
 ### shapelang
 
@@ -144,4 +83,4 @@ Basic Convention:
 - add pytorch/jax/tinygrad backends
 - wider support of common operations
 - unit tests
-- more beautiful syntax -->
+- more beautiful syntax --> -->
