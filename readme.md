@@ -43,7 +43,7 @@ y: Array[Batch, Height, Width] = Array()
 z: Array[Time, Batch, Height, Width] = Array()
 ```
 
-### Misc
+### Links
 - Decoupling Algorithms from the Organization of Computation for High Performance Image Processing
 - https://einops.rocks/pytorch-examples.html
 - https://github.com/google/trax
